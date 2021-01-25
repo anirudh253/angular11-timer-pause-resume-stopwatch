@@ -43,12 +43,12 @@ function timerWithPause(
 export class AppComponent implements OnInit, OnDestroy {
   pauser = new BehaviorSubject<boolean>(false);
   starterStopper = new BehaviorSubject<boolean>(false);
-  stopWatch = new BehaviorSubject<number>(0);
+  stopWatch = new BehaviorSubject<string>("00:00,00");
   laps = [];
 
   ngOnInit() {
-    timerWithPause(this.starterStopper, this.pauser, 60).subscribe({
-      next: value => this.stopWatch.next(value),
+    timerWithPause(this.starterStopper, this.pauser, 100).subscribe({
+      next: value => this.stopWatch.next(this.msToDhms(value)),
       error: error => console.log("Timer error"),
       complete: () => console.log("Timer complete")
     });
@@ -72,11 +72,33 @@ export class AppComponent implements OnInit, OnDestroy {
         this.starterStopper.next(false);
         this.pauser.next(false);
         this.laps = [];
-        this.stopWatch.next(0);
+        this.stopWatch.next("00:00,00");
       } else {
         this.laps = [...this.laps, this.stopWatch.value];
       }
     }
+  }
+
+  msToDhms(msElapsed) {
+    let padZero = value => String(value).padStart(2, "0");
+
+    msElapsed = Number(msElapsed);
+    const hElapsed = msElapsed / 360000;
+    const hRemaining = hElapsed % 24;
+    const sRemaining = (hRemaining * 3600) % 3600;
+
+    const d = Math.floor(hElapsed / 24);
+    const h = Math.floor(hRemaining);
+    const m = Math.floor(sRemaining / 60);
+    const s = Math.floor(sRemaining % 60);
+    const ms = Math.floor((sRemaining % 1) * 100);
+
+    const dDisplay = d > 0 ? padZero(d) + (d == 1 ? " Day, " : " Days, ") : "";
+    const hDisplay = h > 0 ? padZero(h) + ":" : "";
+    const mDisplay = padZero(m) + ":";
+    const sDisplay = padZero(s);
+    const msDisplay = padZero(ms);
+    return `${dDisplay}${hDisplay}${mDisplay}${sDisplay},${msDisplay}`;
   }
 
   ngOnDestroy() {

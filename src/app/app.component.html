@@ -1,13 +1,17 @@
-<button (mouseup)="handleStarter()">
-  {{ starterStopper?.value 
-    ? pauser?.value 
-      ? 'Resume' 
-      : 'Pause' 
-    : 'Start' }}
-</button>
-<button [disabled]="!starterStopper?.value" (mouseup)="handleLapper()">
-  {{ pauser?.value ? 'Reset' : 'Lap' }}
-</button>
+<input
+  id="starter"
+  type="button"
+  (mouseup)="handleStarter()"
+  [value]="starterStopper?.value ? pauser?.value ? 'Resume' : 'Pause' : 'Start'"
+/>
+
+<input
+  id="lapper"
+  type="button"
+  [disabled]="!starterStopper?.value"
+  (mouseup)="handleLapper()"
+  [value]="pauser?.value ? 'Reset' : 'Lap'"
+/>
 <br>
 
 Stopwatch: {{ stopWatch | async }}

@@ -28,16 +28,20 @@ input[type="button"] {
 
 .default {
   background-color: #0aad13;
+  cursor: pointer;
 }
 
 .disable {
   background-color: green;
+  cursor: not-allowed;
 }
 
 .pause {
   background-color: #fcba03;
+  cursor: pointer;
 }
 
 .reset {
   background-color: #f71d00;
+  cursor: pointer;
 }

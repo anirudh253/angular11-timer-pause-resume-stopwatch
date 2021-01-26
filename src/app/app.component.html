@@ -11,15 +11,14 @@
   type="button"
   [disabled]="!starterStopper?.value"
   (mouseup)="handleLapper()"
-  [ngClass]="pauser?.value ? 'reset' : 'default'"
+  [ngClass]="pauser?.value ? 'reset' : starterStopper?.value ? 'default' : 'disable'"
   [value]="pauser?.value ? 'Reset' : 'Lap'"
 />
-<br>
 
-Stopwatch: {{ stopWatch | async }}
-<br>
+<p>Stopwatch: {{ stopWatch | async }}</p>
+
 <ng-container *ngIf="laps.length">
-	<span *ngFor="let lap of laps; let i=index">
-    {{ (i+1)+'.'+' '+lap }}<br>
-  </span>
+	<p *ngFor="let lap of laps; let i=index">
+		{{ (i+1)+'.'+' '+lap }}<br>
+  </p>
 </ng-container>

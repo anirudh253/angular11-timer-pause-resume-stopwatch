@@ -40,9 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     timerWithPause(this.starterStopper, this.pauser, 100).subscribe({
-      next: value => this.stopWatch.next(this.msToDhms(value)),
-      error: error => console.log("Timer error"),
-      complete: () => console.log("Timer complete")
+      next: value => this.stopWatch.next(this.msToDhms(value))
     });
   }
 
@@ -88,9 +86,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const dDisplay = d > 0 ? padZero(d) + (d == 1 ? " Day, " : " Days, ") : "";
     const hDisplay = h > 0 ? padZero(h) + ":" : "";
     const mDisplay = padZero(m) + ":";
-    const sDisplay = padZero(s);
+    const sDisplay = padZero(s) + ",";
     const msDisplay = padZero(ms);
-    return `${dDisplay}${hDisplay}${mDisplay}${sDisplay},${msDisplay}`;
+    return `${dDisplay}${hDisplay}${mDisplay}${sDisplay}${msDisplay}`;
   }
 
   ngOnDestroy() {

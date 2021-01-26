@@ -20,21 +20,24 @@ input[type="button"] {
   padding: 5px;
   margin-bottom: 2px;
   box-sizing: border-box;
-  background-color: #0aad13;
   border: solid 1px black;
   border-radius: 2px;
   font-family: "Lato";
   font-size: 16px;
 }
 
-input[type="button"]:focus {
-  width: 50%;
-  padding: 5px;
-  margin-bottom: 2px;
-  box-sizing: border-box;
-  background-color: limegreen;
-  border: solid 1px black;
-  border-radius: 2px;
-  font-family: "Lato";
-  font-size: 16px;
+.default {
+  background-color: #0aad13;
+}
+
+.disable {
+  background-color: green;
+}
+
+.pause {
+  background-color: #fcba03;
+}
+
+.reset {
+  background-color: #f71d00;
 }

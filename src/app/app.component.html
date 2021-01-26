@@ -2,6 +2,7 @@
   id="starter"
   type="button"
   (mouseup)="handleStarter()"
+  [ngClass]="starterStopper?.value ? pauser?.value ? 'default' : 'pause' : 'default'"
   [value]="starterStopper?.value ? pauser?.value ? 'Resume' : 'Pause' : 'Start'"
 />
 
@@ -10,6 +11,7 @@
   type="button"
   [disabled]="!starterStopper?.value"
   (mouseup)="handleLapper()"
+  [ngClass]="pauser?.value ? 'reset' : 'default'"
   [value]="pauser?.value ? 'Reset' : 'Lap'"
 />
 <br>

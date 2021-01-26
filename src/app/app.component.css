@@ -32,7 +32,7 @@ input[type="button"]:focus {
 }
 
 .default {
-  background-color: #0aad13;
+  background-color: #15db1f;
   cursor: pointer;
 }
 
@@ -42,7 +42,7 @@ input[type="button"]:focus {
 }
 
 .pause {
-  background-color: #fcba03;
+  background-color: #f8f411f8;
   cursor: pointer;
 }
 

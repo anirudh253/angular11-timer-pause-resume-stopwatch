@@ -8,7 +8,7 @@ function timerWithPause(
   pauser: Observable<boolean>,
   fps: number
 ): Observable<number> {
-  return Observable.create((obs: Observer<number>) => {
+  return new Observable((obs: Observer<number>) => {
     let i = 0;
     let ticker = starterStopper.pipe(
       switchMap(start => {

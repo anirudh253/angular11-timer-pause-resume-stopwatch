@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { BehaviorSubject, NEVER, timer, Observable, Observer } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+import { BehaviorSubject, NEVER, timer, Observable, Observer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 function timerWithPause(
   starterStopper: Observable<boolean>,
@@ -28,14 +28,14 @@ function timerWithPause(
 }
 
 @Component({
-  selector: "my-app",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   pauser = new BehaviorSubject<boolean>(false);
   starterStopper = new BehaviorSubject<boolean>(false);
-  stopWatch = new BehaviorSubject<string>("00:00,00");
+  stopWatch = new BehaviorSubject<string>('00:00,00');
   laps = [];
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.starterStopper.next(false);
         this.pauser.next(false);
         this.laps = [];
-        this.stopWatch.next("00:00,00");
+        this.stopWatch.next('00:00,00');
       } else {
         this.laps = [...this.laps, this.stopWatch.value];
       }
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   msToDhms(msElapsed) {
-    let padZero = value => String(value).padStart(2, "0");
+    let padZero = (value: number) => String(value).padStart(2, '0');
 
     msElapsed = Number(msElapsed);
     const hElapsed = msElapsed / 360000;
@@ -83,10 +83,10 @@ export class AppComponent implements OnInit, OnDestroy {
     const s = Math.floor(sRemaining % 60);
     const ms = Math.floor((sRemaining % 1) * 100);
 
-    const dDisplay = d > 0 ? padZero(d) + (d == 1 ? " Day, " : " Days, ") : "";
-    const hDisplay = h > 0 ? padZero(h) + ":" : "";
-    const mDisplay = padZero(m) + ":";
-    const sDisplay = padZero(s) + ",";
+    const dDisplay = d > 0 ? padZero(d) + (d == 1 ? ' Day, ' : ' Days, ') : '';
+    const hDisplay = h > 0 ? padZero(h) + ':' : '';
+    const mDisplay = padZero(m) + ':';
+    const sDisplay = padZero(s) + ',';
     const msDisplay = padZero(ms);
     return `${dDisplay}${hDisplay}${mDisplay}${sDisplay}${msDisplay}`;
   }
